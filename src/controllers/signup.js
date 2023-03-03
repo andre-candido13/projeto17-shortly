@@ -14,6 +14,7 @@ try {
 
 await db.query(`INSERT INTO users (name, email, password) VALUES ($1, $2, $3);`,
 ([name, email, passwordcrypt]))
+
 return res.sendStatus(201).send("OK")
 
 
@@ -40,7 +41,7 @@ try {
 
 
 } catch (err) {
-    res.status(200).send(err.message)
+    res.status(200).send()
 }
 
 }

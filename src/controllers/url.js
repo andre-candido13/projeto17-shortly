@@ -47,10 +47,20 @@ try {
     res.status(500).send(err.message)
 
 }
+}
 
+export async function urlP(req, res) {
 
+    const id = req.params.id
 
+    try {
+        const urlOn = await db.query(`SELECT * FROM urls WHERE id = $1`, [id])
 
+        if (urlOn.rowCount <= 0) { return res.sendStatus(404) }
 
+        res.status(200).send({ id: urlOn.rows[0].id, shortUrl: urlOn.rows[0].shortUrl, url: urlOn.rows[0].url })
 
+    } catch (error) {
+        res.status(500).send(error.message)
+    }
 }
