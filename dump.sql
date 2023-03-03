@@ -158,6 +158,9 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: -
 --
 
+INSERT INTO public.users VALUES (1, 'midoria', 'andre@eu.com.br', '$2b$10$YBzh5RKTHfHjfsJCoqllpe8oFQcE1rkoXL1.Vb9ArD.ocnSlHS1QS', 0, 0, '2023-03-03');
+INSERT INTO public.users VALUES (2, 'enedevour', 'endevour@eu.com.br', '$2b$10$8qpeyYKt.VPTteFQR.rH2uXF4p3kj7hxMUI6xBbhcPFb4ju4pKGeS', 0, 0, '2023-03-03');
+INSERT INTO public.users VALUES (3, 'alo', 'xablau@eu.com.br', '$2b$10$e3H5BiODpudS7DylMJd30ePzsKnsO5eC/ww9ZNLvE8nPJ9QY/6Cla', 0, 0, '2023-03-03');
 
 
 --
@@ -178,7 +181,7 @@ SELECT pg_catalog.setval('public.urls_id_seq', 1, false);
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 1, false);
+SELECT pg_catalog.setval('public.users_id_seq', 3, true);
 
 
 --
