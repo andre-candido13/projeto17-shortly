@@ -59,8 +59,8 @@ CREATE TABLE public.urls (
     id integer NOT NULL,
     "userId" integer NOT NULL,
     url text NOT NULL,
-    "shortUrl" integer NOT NULL,
-    "visitCount" integer NOT NULL
+    "shortUrl" text NOT NULL,
+    "visitCount" integer DEFAULT 0 NOT NULL
 );
 
 
@@ -93,8 +93,8 @@ CREATE TABLE public.users (
     name text NOT NULL,
     email text NOT NULL,
     password text NOT NULL,
-    "linksCount" integer NOT NULL,
-    "visitCount" integer NOT NULL
+    "linksCount" integer DEFAULT 0 NOT NULL,
+    "visitCount" integer DEFAULT 0 NOT NULL
 );
 
 

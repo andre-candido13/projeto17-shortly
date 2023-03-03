@@ -2,6 +2,7 @@ import express from "express"
 import cors from "cors"
 import dotenv from "dotenv"
 import auth from "./routers/signUpRouter.js"
+import user from "./routers/usersRouter.js"
 
 dotenv.config()
 
@@ -14,6 +15,6 @@ app.use(cors())
 const PORT = process.env.PORT
 
 //routes
-app.use([auth])
+app.use([auth, user])
 
 app.listen(5000, () => console.log("Servidor ON na porta", + 5000))
