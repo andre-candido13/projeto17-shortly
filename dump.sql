@@ -28,7 +28,7 @@ CREATE TABLE public.sessions (
     id integer NOT NULL,
     token text NOT NULL,
     "userId" integer NOT NULL,
-    createdat timestamp without time zone
+    "createdAt" date DEFAULT now() NOT NULL
 );
 
 
@@ -62,7 +62,7 @@ CREATE TABLE public.urls (
     url text NOT NULL,
     "shortUrl" text NOT NULL,
     "visitCount" integer DEFAULT 0 NOT NULL,
-    createdat timestamp without time zone
+    "createdAt" date DEFAULT now() NOT NULL
 );
 
 
@@ -97,7 +97,7 @@ CREATE TABLE public.users (
     password text NOT NULL,
     "linksCount" integer DEFAULT 0 NOT NULL,
     "visitCount" integer DEFAULT 0 NOT NULL,
-    createdat timestamp without time zone
+    "createdAt" date DEFAULT now() NOT NULL
 );
 
 
@@ -158,8 +158,6 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.users VALUES (1, 'bakugo', 'eu@eu.com.br', '$2b$10$00Q5qvDsRufGD2evm/Wp1es/R6kSqc4.cLtAiFONO.rRYdp9MxKdS', 0, 0, NULL);
-INSERT INTO public.users VALUES (3, 'andre', 'andre@eu.com.br', '$2b$10$MtlRykwuaolkhD0pSlAsFetVll2qcYrx2pT07XyElDHf7Syp9n5oy', 0, 0, NULL);
 
 
 --
@@ -180,7 +178,7 @@ SELECT pg_catalog.setval('public.urls_id_seq', 1, false);
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 3, true);
+SELECT pg_catalog.setval('public.users_id_seq', 1, false);
 
 
 --
