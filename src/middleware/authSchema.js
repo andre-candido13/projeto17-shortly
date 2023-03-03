@@ -5,30 +5,7 @@ import { signUpSchema } from "../schemas/signUpSchema.js"
 
 
 
-export async function authorization (req, res, next) {
 
-const { authorization } = req.headers
-
-const token = authorization?.replace("Bearer", "")
-
-if (!token) return res.status(401).send("Não autorizado")
-
-try {
-
-    const session = await db.query("SELECT * FROM sessions WHERE token= $1" 
-    ([token]))
-
-    if (token.rows.length === 0)  return res.status(401).send("Não autorizado")
-
-    res.locals.session = session.row[0]
-
-    next()
-
-} catch (err) {
-    res.status(500).send(err.message)
-
-}
-}
 
 export async function signUpPass (req, res, next) {
 
@@ -43,7 +20,7 @@ if (err) {
         return res.status(422).send(err)
     }
 
-    const dadosExist = await db.query(`SELECT * FROM users WHERE email = $1`, [user.email]);
+    const dadosExist = await db.query(`SELECT * FROM users WHERE email = $1`, [user.email])
 
     if (dadosExist.rowCount !== 0) {
         return res.status(409).send("OK")
@@ -68,7 +45,7 @@ if (error) {
 
 try {
 
-    const userExist = await db.query("SELECT * FROM users WHERE email =$1", ([email]))
+    const userExist = await db.query("SELECT * FROM users WHERE email = $1", ([email]))
 
    
  
@@ -91,3 +68,27 @@ try {
 next()
 
 }
+
+export async function authorization (req, res, next) {
+
+    const { authorization } = req.headers
+    
+    const token = authorization?.replace("Bearer", "")
+    
+    if (!token) return res.status(401).send("Não autorizado")
+    
+    try {
+    
+        const session = await db.query("SELECT * FROM sessions WHERE token= $1", ([token]))
+    
+        if (token.rows.length === 0)  return res.status(401).send("Não autorizado")
+    
+        res.locals.session = session.row[0]
+    
+        next()
+    
+    } catch (err) {
+        res.status(500).send(err.message)
+    
+    }
+    }

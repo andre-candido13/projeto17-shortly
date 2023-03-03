@@ -12,8 +12,7 @@ const passwordcrypt = bcrypt.hashSync(password, 10)
 
 try {
 
-await db.query(`INSERT INTO users (name, email, password) VALUES ($1, $2, $3);`,
-([name, email, passwordcrypt]))
+await db.query(`INSERT INTO users (name, email, password) VALUES ($1, $2, $3);`, ([name, email, passwordcrypt]))
 
 return res.sendStatus(201).send("OK")
 
@@ -34,8 +33,7 @@ const token = uuidv4()
 
 try {
 
-    await db.query(`INSERT INTO sessions ("userId", token) VALUES $1,$2`) 
-    ([user.id, token])
+    await db.query(`INSERT INTO sessions ("userId", token) VALUES $1,$2`, ([user.id, token]))
     return res.status(200).send({token})
 
 
